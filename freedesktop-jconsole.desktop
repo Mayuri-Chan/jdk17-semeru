@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Temurin Java 17 Console
-Comment=Temurin Java 17 Monitoring & Management Console
+Name=Semeru Java 17 Console
+Comment=Semeru Java 17 Monitoring & Management Console
 Keywords=java;console;monitoring
-Exec=/usr/lib/jvm/java-17-temurin/bin/jconsole
+Exec=/usr/lib/jvm/java-17-semeru/bin/jconsole
 Terminal=false
 Type=Application
 Categories=Application;System;

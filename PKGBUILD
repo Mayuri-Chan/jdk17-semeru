@@ -10,15 +10,16 @@
 _majorver=17
 _completever=17.0.9
 _updatever=9
+_openj9ver=0.41.0
 pkgrel=2
 pkgver=${_completever}.u${_updatever}
 _tag_ver=${_completever}+${_updatever}
 [ $_majorver != $_completever ] && _versuffix=U
 
-pkgname=jdk17-temurin
-pkgdesc="Temurin ${_majorver} (OpenJDK ${_majorver} Java binaries by Adoptium, formerly AdoptOpenJDK)"
+pkgname=jdk17-semeru
+pkgdesc="Semeru ${_majorver} (OpenJDK ${_majorver} Java binaries by IBM)"
 arch=('x86_64')
-url='https://adoptium.net/'
+url='https://developer.ibm.com/'
 license=('custom')
 
 depends=('java-runtime-common>=3' 'java-environment-common' 'ca-certificates-utils' 'desktop-file-utils' 'libxrender' 'libxtst' 'alsa-lib')
@@ -36,34 +37,34 @@ provides=("java-runtime-headless=${_majorver}"
           "jdk-openjdk=${pkgver}"
           "openjdk${_majorver}-src=${pkgver}"
           "openjdk-src=${pkgver}")
-backup=(etc/java-${_majorver}-temurin/logging.properties
-        etc/java-${_majorver}-temurin/management/jmxremote.access
-        etc/java-${_majorver}-temurin/management/jmxremote.password.template
-        etc/java-${_majorver}-temurin/management/management.properties
-        etc/java-${_majorver}-temurin/net.properties
-        etc/java-${_majorver}-temurin/sdp/sdp.conf.template
-        etc/java-${_majorver}-temurin/security/java.policy
-        etc/java-${_majorver}-temurin/security/java.security
-        etc/java-${_majorver}-temurin/security/policy/limited/default_local.policy
-        etc/java-${_majorver}-temurin/security/policy/limited/default_US_export.policy
-        etc/java-${_majorver}-temurin/security/policy/limited/exempt_local.policy
-        etc/java-${_majorver}-temurin/security/policy/README.txt
-        etc/java-${_majorver}-temurin/security/policy/unlimited/default_local.policy
-        etc/java-${_majorver}-temurin/security/policy/unlimited/default_US_export.policy
-        etc/java-${_majorver}-temurin/sound.properties)
-install=install_jdk17-temurin.sh
+backup=(etc/java-${_majorver}-semeru/logging.properties
+        etc/java-${_majorver}-semeru/management/jmxremote.access
+        etc/java-${_majorver}-semeru/management/jmxremote.password.template
+        etc/java-${_majorver}-semeru/management/management.properties
+        etc/java-${_majorver}-semeru/net.properties
+        etc/java-${_majorver}-semeru/sdp/sdp.conf.template
+        etc/java-${_majorver}-semeru/security/java.policy
+        etc/java-${_majorver}-semeru/security/java.security
+        etc/java-${_majorver}-semeru/security/policy/limited/default_local.policy
+        etc/java-${_majorver}-semeru/security/policy/limited/default_US_export.policy
+        etc/java-${_majorver}-semeru/security/policy/limited/exempt_local.policy
+        etc/java-${_majorver}-semeru/security/policy/README.txt
+        etc/java-${_majorver}-semeru/security/policy/unlimited/default_local.policy
+        etc/java-${_majorver}-semeru/security/policy/unlimited/default_US_export.policy
+        etc/java-${_majorver}-semeru/sound.properties)
+install=install_jdk17-semeru.sh
 options=(!strip)
 
-source=(https://github.com/adoptium/temurin${_majorver}-binaries/releases/download/jdk-${_tag_ver/+/%2B}/OpenJDK${_majorver}${_versuffix}-jdk_x64_linux_hotspot_${_tag_ver/+/_}.tar.gz
+source=(https://github.com/ibmruntimes/semeru17-binaries/releases/download/jdk-${_completever}%2B9_openj9-${_openj9ver}/ibm-semeru-open-jdk_x64_linux_${_completever}_${_updatever}_openj9-${_openj9ver}.tar.gz
         freedesktop-java.desktop
         freedesktop-jconsole.desktop
         freedesktop-jshell.desktop)
-sha256sums=('7b175dbe0d6e3c9c23b6ed96449b018308d8fc94a5ecd9c0df8b8bc376c3c18a'
-            'ae076317d93a389cc0c893fd9ec6769ae860c2cc01f8c8bed3f4ee476c73e625'
-            'dc278160ca7df32bcfab0a5420c09eaf6f4602d30f57b6c5bedb0f60062c5228'
-            'd0913ae3b9f469f8567432b0867222d66f50008c313f5a0882d15994ba19ec01')
+sha256sums=('9b945e58f024108a20eb907015cca4a452332b7644e8dd8e051149a3ec62e3a3'
+            '99c65b670fedd57eabfdb341b4ebbca45e8b692c95ffece97a6f88e80f9019f0'
+            'a9d800cb5bbcd16c7dad7e003a8a816c961397f210f8210a5019701d8e229186'
+            '5e3423e36723397700d8991287c85210420e6ef44a2543f11bf3f1040bd22cb5')
 
-_jvmdir=/usr/lib/jvm/java-${_majorver}-temurin
+_jvmdir=/usr/lib/jvm/java-${_majorver}-semeru
 _jdkdir=jdk-${_tag_ver}
 
 package() {
@@ -75,8 +76,8 @@ package() {
 
   # Conf
   install -dm 755 "${pkgdir}/etc"
-  mv conf "${pkgdir}/etc/java-${_majorver}-temurin"
-  ln -sf /etc/java-${_majorver}-temurin conf
+  mv conf "${pkgdir}/etc/java-${_majorver}-semeru"
+  ln -sf /etc/java-${_majorver}-semeru conf
 
   # Legal
   install -dm 755 "${pkgdir}/usr/share/licenses"
@@ -85,7 +86,7 @@ package() {
 
   # Man pages
   for f in man/man1/*; do
-    install -Dm 644 "${f}" "${pkgdir}/usr/share/${f/\.1/-temurin${_majorver}.1}"
+    install -Dm 644 "${f}" "${pkgdir}/usr/share/${f/\.1/-semeru${_majorver}.1}"
   done
   rm -rf man
   ln -sf /usr/share/man man

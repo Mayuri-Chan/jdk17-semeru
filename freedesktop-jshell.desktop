@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Temurin Java 17 Shell
-Comment=Temurin Java 17 Shell
+Name=Semeru Java 17 Shell
+Comment=Semeru Java 17 Shell
 Keywords=java;shell
-Exec=/usr/lib/jvm/java-17-temurin/bin/jshell
+Exec=/usr/lib/jvm/java-17-semeru/bin/jshell
 Terminal=true
 Type=Application
 Categories=Application;System;
